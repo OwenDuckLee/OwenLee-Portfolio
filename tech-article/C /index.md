@@ -1,7 +1,7 @@
 ---
 title: C
 parent: Tech Articles
-layout: page
+layout: default
 nav_order: 1
 ---
 
