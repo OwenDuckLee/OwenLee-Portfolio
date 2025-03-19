@@ -1,8 +1,9 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
-theme: just-the-docs
+title: Owen Lee's Portfolio
+description: Show my capability!
+#theme: just-the-docs
+theme: minima
 
-url: https://just-the-docs.github.io
+url: https://owenducklee.github.io/OwenLee-Portfolio
 
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
