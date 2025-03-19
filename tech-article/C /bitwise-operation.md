@@ -6,7 +6,7 @@ nav_order: 1
 ---
 
 # Refernce Article
-Reference article: https://hackmd.io/@sysprog/c-bitwise
+https://hackmd.io/@sysprog/c-bitwise
 
 # Bitwise 方式
 
@@ -31,11 +31,12 @@ Reference article: https://hackmd.io/@sysprog/c-bitwise
     > 
     
 - 當右移一個負數時，有可能變成正數or負數，主要會依據編譯器如何實作的
-- 編譯器可以有選項可改變此語意，gcc的實作就是使用arithmetic shift (ex. 也就是右移一個負數時 會補上sign bit在左側 得到一個負數)
+- 編譯器可以有選項可改變此語意，gcc的實作就是使用arithmetic shift 
+  (ex. 也就是右移一個負數時 會補上sign bit在左側 得到一個負數)
 
-> arithmetic shift的應用
-若要判斷一個int type 的變數n是否為正數，可以使用 n >> 31 等同於 n ≥ 0 ? 0 : -1
-> 
+    > arithmetic shift的應用
+    若要判斷一個int type 的變數n是否為正數，可以使用 n >> 31 等同於 n ≥ 0 ? 0 : -1
+    > 
 
 ```c
 int n;
@@ -45,7 +46,8 @@ int n;
 n >= 0 ? 0 : -1; //option 2
 ```
 
-## !需特別注意! 無號數 與 有號數 在C語言混合在單一表示時，有號數會被轉換為無號數
+## !需特別注意! 無號數 與 有號數，
+## 在C語言混合在單一表示時，有號數會被轉換為無號數
 
 須注意混用時的實際運算狀況
 
@@ -61,8 +63,10 @@ for (int i = n - 1 ; i - sizeof(char) >= 0; i--)
 //cause infinite loop
 ```
 
+>
 > 若 n 是 32-bit 整數，那麼 abs(n) 等同於 ((n >> 31) ^ n) - (n >> 31)
-> 
+>
+
 - 當 n 是正數時:
     - n >> 31 是 0
     - n ^ 0 仍是 n
