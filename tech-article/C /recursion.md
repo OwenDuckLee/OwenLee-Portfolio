@@ -238,9 +238,11 @@ void list_dir(const char *dir_name)
 ### Functional Programming C
 
 > Functional Programming 是種開發典範(programming apradigm)，
-> 不是design patter 也不是 framework
-> 是種以數學函數為中心的"思考方式” 與 “程式風格”
-> 
+不是design patter 也不是 framework
+是種以數學函數為中心的"思考方式” 與 “程式風格”
+>
+
+
 - 運算用的function 大多只包含 條件式及遞迴呼叫
 - higher-order functions兩個特點
     - function 可以當作參數傳入funciton 之中
@@ -291,21 +293,21 @@ typedef void *const CPS_Result;
 /*prototypes for the continuation - call back functions*/
 typedef void (*MakeListCallback)(int_list_t list, CPS_Result res);
 void make_list(uint32_t const arr_size,
-								int32_t const array[], 
-								int_list_t lst,
-								MakeListCallback const cb,
-								CPS_Result res);
+		int32_t const array[], 
+		int_list_t lst,
+		MakeListCallback const cb,
+		CPS_Result res);
 						
 typedef void (*ReversedListCallback)(int_list_t list, CPS_Result res);
 void reverse(int_list_t list,
-							int_list_t rlist,
-							ReversedCallback const cb,
-							CPS_Result res);
+		int_list_t rlist,
+		ReversedCallback const cb,
+		CPS_Result res);
 							
 typedef void (*VoidMappable)(int32_t const val);
 void void_map_array(VoidMapple const cb,
-										uint32_t const size,
-										int32_t const *const arr);
+		uint32_t const size,
+		int32_t const *const arr);
 										
 void list2array(int_list_t list, CPS_Result res);
 
@@ -335,17 +337,17 @@ int main(int argc, char *argv[]) {
 
 /*construct a linked list from an array*/
 void make_list(uint32_t const arr_size,
-								int32_t const arr[], 
-								int_list_t lst,
-								MakeListCallback const cb,
-								CPS_Result res) {
+		int32_t const arr[], 
+		int_list_t lst,
+		MakeListCallback const cb,
+		CPS_Result res) {
 	if(!arr_size) {
 		cb(lst, res);
 		return;
 	}
 	
 	make_list(arr_size - 1, arr, 
-						&(node_t){.val = arr[arr_size - 1], .next = lst}, cb, res);
+		   &(node_t){.val = arr[arr_size - 1], .next = lst}, cb, res);
 }								
 
 /*transform a linked list into an array*/
@@ -357,9 +359,9 @@ void list2array(int_list_t list, CPS_Result res) {
 }
 
 void reverse(int_list_t list,
-							int_list_t rlist, //reversed list
-							ReversedListCallback const cb,
-							CPS_Result res) {
+		int_list_t rlist, //reversed list
+		ReversedListCallback const cb,
+		CPS_Result res) {
 	if(Nil == list) {
 		cb(rlist, res);
 		return;
@@ -368,13 +370,13 @@ void reverse(int_list_t list,
 }
 
 void void_map_array(VoidMappable const cb,
-										uint32_t const size,
-										int32_t const *const arr) {
+			uint32_t const size,
+			int32_t const *const arr) {
 	if(!size) return;
 	cb(arr[0]);
 	void_map_array(cb, size -1, arr + 1);
 }
-			
+	
 ```
 
 ## Case: merge sort elements in linked list
@@ -409,10 +411,10 @@ static const ele_t Nil = {.val = 0, .list = &(node_t){.next = NULL}};
 typedef void *const CPS_Result;
 typedef void (*MakeListCallBack)(ele_t *e, CPS_Result res);
 void make_list(uint32_t const arr_size, 
-								int32_t const array[],
-								ele_t *e, 
-								MakeListCallBack const cb,
-								CPS_Result res);
+		int32_t const array[],
+		ele_t *e, 
+		MakeListCallBack const cb,
+		CPS_Result res);
 							
 void mergesort_toarray(ele_t *e, CPS_Result res);
 
@@ -423,8 +425,8 @@ ele_t *mergeLists(ele_t *a, ele_t *b);
 
 typedef void(*VoidMappable)(int32_t const val);
 void void_map_array(VoidMappable const cb,
-										uint32_t const size,
-										int32_t const *const arr);
+			uint32_t const size,
+			int32_t const *const arr);
 										
 void list2array(ele_t *e, CPS_Result res);
 
@@ -447,10 +449,10 @@ int main(int argc, char *argv[]) {
 }
 
 void make_list(uint32_t const arr_size, 
-								int32_t const array[],
-								ele_t *e, 
-								MakeListCallBack const cb,
-								CPS_Result res)
+		int32_t const array[],
+		ele_t *e, 
+		MakeListCallBack const cb,
+		CPS_Result res)
 {
 	if(!arr_size) {
 		cb(e, res);
@@ -458,9 +460,9 @@ void make_list(uint32_t const arr_size,
 	}
 	
 	make_list(arr_size - 1, arr,
-						&(ele_t){.val = arr[arr_size - 1],
-										 .list = &(node_t){.next = (list_t)(&(e->list))}},
-										 cb, res);
+		  &(ele_t){.val = arr[arr_size - 1],
+			   .list = &(node_t){.next = (list_t)(&(e->list))}},
+ 			   cb, res);
 }
 
 void list2array(ele_t *e, CPS_Result res) {
@@ -478,8 +480,8 @@ void mergesort_toarray(ele_t *e, CPS_Result res) {
 }
 
 void void_map_array(VoidMappable const cb,
-										uint32_t const size, 
-										int32_t const *const arr)
+			uint32_t const size, 
+			int32_t const *const arr)
 {
 	if(!size) return;
 	cb(arr[0]);
