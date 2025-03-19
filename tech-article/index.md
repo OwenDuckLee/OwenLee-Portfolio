@@ -1,5 +1,6 @@
 ---
 title: Tech Articles
+layout: default
 nav_order: 4
 ---
 
