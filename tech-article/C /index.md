@@ -5,7 +5,7 @@ layout: default
 nav_order: 1
 ---
 
-# Code
+# C
 {: .no_toc }
 
 ## Table of contents
