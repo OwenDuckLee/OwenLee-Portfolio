@@ -1,5 +1,6 @@
 ---
 title: Skill
+layout: default
 nav_order: 3
 ---
 
