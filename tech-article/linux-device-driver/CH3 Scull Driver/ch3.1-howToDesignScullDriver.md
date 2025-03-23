@@ -5,8 +5,9 @@ layout: default
 nav_order: 1
 ---
 
-# 本章學習目的
-## 練習建構一個完整的 字元裝置驅動程式(char device driver / char driver)
+# CH3.1 How to design a Scull Driver
+
+# 本章學習目的: 練習建構一個完整的 字元裝置驅動程式(char device driver / char driver)
 
 > 大多數簡單的硬體裝置，都可以歸類為 “字元裝置”
 > 
