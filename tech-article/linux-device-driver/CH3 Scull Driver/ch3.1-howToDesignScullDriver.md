@@ -7,7 +7,8 @@ nav_order: 1
 
 # CH3.1 How to design a Scull Driver
 
-# 本章學習目的: 練習建構一個完整的 字元裝置驅動程式(char device driver / char driver)
+## 本章學習目的: 
+## 練習建構一個完整的 字元裝置驅動程式(char device driver / char driver)
 
 > 大多數簡單的硬體裝置，都可以歸類為 “字元裝置”
 > 
@@ -17,7 +18,7 @@ nav_order: 1
 - 電腦一定有這個硬體，能跑Linux就能跑scull
 - scull沒有任何實際的功能，唯一的作用：展示核心與char driver之間的軟體介面
 
-# 設計驅動程式
+## 設計驅動程式
 
 - 定義 驅動程式要提供哪些功能(機制facilities)給user-space程式
   
