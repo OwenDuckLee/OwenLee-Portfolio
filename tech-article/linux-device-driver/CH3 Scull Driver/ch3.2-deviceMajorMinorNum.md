@@ -5,9 +5,10 @@ layout: default
 nav_order: 2
 ---
 
-# Device Major-num and Minor-num
+# CH3.2 Device Major-num and Minor-num
 
-# 本章學習目的 ： 理解如何 配置,存取,釋放 裝置編號 
+## 本章學習目的 ： 
+## 理解如何 配置,存取,釋放 裝置編號 
 
 ## 字元裝置的存取，是透過裝置在檔案系統上的名稱
 
