@@ -103,7 +103,7 @@ nav_order: 1
 因為核心版本的相容性問題，可以利用 KERNEL_VERSION 與 LINUX_VERSION_CODE巧妙避開
 
 ```c
-<linux/version.h>中所定義的巨集
+#include <linux/version.h> //使用version.h中所定義的巨集
 
 UTS_RELEASE //展開後為一個描述核心版本的字串
 
