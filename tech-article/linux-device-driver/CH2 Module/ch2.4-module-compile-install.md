@@ -18,44 +18,44 @@ nav_order: 1
     
 - 為模組寫一個Makefile
     
-    ```c
-    /*makefile content*/
+    ```makefile
+    #makefile content
     obj-m := hello.o
     
-    /*上述指令使用了GNU的擴充語法
-    	宣稱有一個模組要從目的碼檔 hello.o建構出來
-    	所產生的模組檔會是 hello.ko*/
+    #上述指令使用了GNU的擴充語法
+    #宣稱有一個模組要從目的碼檔 hello.o建構出來
+    #所產生的模組檔會是 hello.ko
     	
-    /*example*/
+    #example
     obj-m := module.o
     module-objs := file1.o file2.o
     ```
     
 - 如何使用Makefile
     
-    ```c
-    /*假設 核心源碼樹位址 ~/kernel-6.8 目錄 */
-    /*假設 模組source位址 ~/mymodule 目錄 */
+    ```bash
+    #假設 核心源碼樹位址 ~/kernel-6.8 目錄 
+    #假設 模組source位址 ~/mymodule 目錄 
     $cd ~/mymodule
     $make -C ~/kernel-6.8 M=$(shell pwd) modules
     
-    //先切換工作目錄到 -C選項所指的目錄(核心源碼的頂層目錄)
-    //在該目錄找到核心源碼頂層的makefile
+    ##先切換工作目錄到 -C選項所指的目錄(核心源碼的頂層目錄)
+    ##在該目錄找到核心源碼頂層的makefile
     
-    //M= 選項會使該個makefile回到模組的原始程式目錄
-    //開始建構modules目標，此目標代表obj-m 變數所列的模組
+    ##M= 選項會使該個makefile回到模組的原始程式目錄
+    ##開始建構modules目標，此目標代表obj-m 變數所列的模組
     
     ```
     
 - 優化減少輸入make指令的makefile 範本
     
-    ```c
-    /*如果有定義KERNELRELEASE，就表示make是從核心建構系統去處理本檔案，所以我們可使用他的語言*/
+    ```makefile
+    #如果有定義KERNELRELEASE，就表示make是從核心建構系統去處理本檔案，所以我們可使用他的語言
     
     ifneq ($(KERNELRELEASE),)
     	obj-m := module.o
     
-    /*否則，我們是直接被命令列使用，所以要先呼叫核心建構系統*/
+    #否則，我們是直接被命令列使用，所以要先呼叫核心建構系統
     
     else
     
@@ -67,7 +67,7 @@ nav_order: 1
     	
     endif
     
-    //完整makefile還需要加上 clean, install等目標
+    #完整makefile還需要加上 clean, install等目標
     ```
     
 
