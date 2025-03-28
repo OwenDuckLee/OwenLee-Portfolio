@@ -88,12 +88,13 @@ nav_order: 1
 ### 如何印出裝置編號
 
 > 驅動程式印出訊息時，需要顯示裝置編號，識別是哪個硬體裝置的訊息
-> 
+>
+
 - kernel提供一組macro ， 定義於 <linux/kdev_t.h>
     
-```c
-    #include <linux/kdev_t.h>
-    
-    int print_dev_t(char *buffer, dev_t dev);
-    char *format_dev_t(char *buffer, dev_t dev);
-```
+    ```c
+        #include <linux/kdev_t.h>
+        
+        int print_dev_t(char *buffer, dev_t dev);
+        char *format_dev_t(char *buffer, dev_t dev);
+    ```
