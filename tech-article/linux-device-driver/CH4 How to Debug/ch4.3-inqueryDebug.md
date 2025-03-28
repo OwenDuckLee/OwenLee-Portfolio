@@ -5,6 +5,8 @@ layout: default
 nav_order: 2
 ---
 
+# CH4.3 Inquery Debug
+
 - 大量使用printk() 會導致系統效率降低
     
     可以考慮 修改 /etc/proc/syslogd.conf 組態檔，將日誌檔名之前加一個減號
