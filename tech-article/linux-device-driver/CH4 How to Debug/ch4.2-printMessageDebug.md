@@ -5,6 +5,7 @@ layout: default
 nav_order: 1
 ---
 
+# CH4.2 Print message debug
 
 ## printk() function
 
@@ -16,8 +17,8 @@ nav_order: 1
 - run program which call syscall sys_syslog() e.g. setlevel.c
 - modify the console_level current value in /proc/sys/kernel/printk
     
-    ```c
-    $ sudo echo 8 > /proc/sys/kernel/printk
+    ```bash
+        $ sudo echo 8 > /proc/sys/kernel/printk
     ```
     
 
@@ -59,7 +60,6 @@ nav_order: 1
     endif
     
     CFLAGS += $(DEBFLAGS)
-    
     ```
     
 
@@ -91,9 +91,9 @@ nav_order: 1
 > 
 - kernel提供一組macro ， 定義於 <linux/kdev_t.h>
     
-    ```c
+```c
     #include <linux/kdev_t.h>
     
     int print_dev_t(char *buffer, dev_t dev);
     char *format_dev_t(char *buffer, dev_t dev);
-    ```
+```
