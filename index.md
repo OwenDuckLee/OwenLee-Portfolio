@@ -10,4 +10,4 @@ nav_order: 1
 # How to contact me~
 - Email: gp6h06@gmail.com
 - GitHub: [https://github.com/OwenDuckLee](https://github.com/OwenDuckLee)
-- LinkedIn: [www.linkedin.com/in/chia-chen-li](www.linkedin.com/in/chia-chen-li) 
+- LinkedIn: [https://www.linkedin.com/in/chia-chen-li](https://www.linkedin.com/in/chia-chen-li)
