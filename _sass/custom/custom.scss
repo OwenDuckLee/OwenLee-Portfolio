@@ -1,13 +1,16 @@
 /* _sass/custom/custom.scss */
 
 .site-footer {
-  text-align: left; /* 將頁腳文字靠左對齊 */
-  padding-left: var(--spacing-4); /* 可選：增加一些左側內邊距，讓它不會完全貼邊 */
+  text-align: left !important; /* 強制文字靠左對齊 */
+  margin-left: 0 !important;   /* 移除左側自動邊距，避免置中 */
+  margin-right: auto !important; /* 確保右側自動調整 */
+  padding-left: var(--spacing-4, 1rem) !important; /* 增加左側內邊距，避免文字貼邊 */
 }
 
 /* 如果你需要調整頁腳的整體寬度或位置，可能需要進一步調整 */
-.site-footer-wrap {
-  max-width: var(--content-width, 100%); /* 確保頁腳內容區塊能延伸 */
-  margin-left: var(--spacing-4); /* 可選：整體左移，與左側內容對齊 */
-  margin-right: auto; /* 保持右側自動調整 */
+.site-footer, .site-footer-wrap {
+  margin-left: initial !important; 
+  margin-right: initial !important;
+  max-width: initial !important;
+  width: 100% !important; /* 讓容器佔滿可用寬度，以利子元素靠左 */
 }
