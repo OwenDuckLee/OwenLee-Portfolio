@@ -8,3 +8,6 @@ url: https://owenducklee.github.io/OwenLee-Portfolio
 
 aux_links:
   Portfolio on GitHub: https://github.com/OwenDuckLee
+
+sass:
+  sass_dir: _sass
