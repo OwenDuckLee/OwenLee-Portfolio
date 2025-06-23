@@ -4,5 +4,5 @@ layout: default
 nav_order: 3
 ---
 
-# Tech Articles
+# Debug Cases
 Here are pages for actual debug cases
