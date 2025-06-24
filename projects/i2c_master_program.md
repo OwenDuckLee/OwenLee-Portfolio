@@ -5,16 +5,6 @@ layout: default
 nav_order: 1
 ---
 
-# Reference
-## Linux Kernel Documentation 
-- i2c dev-interface → https://www.kernel.org/doc/Documentation/i2c/dev-interface
-- slave-interface → https://docs.kernel.org/i2c/slave-interface.html
-
-## Linux 
-Linux i2c-tools opensource code (i2cdetect / i2cset / i2cget .etc)
-https://github.com/mozilla-b2g/i2c-tools
-
-
 # Program features
 - this program will running on i2c master device
 - let i2c master device read/write bytes to i2c slave devices
@@ -84,22 +74,21 @@ static int i2c_smbus_read_byte_data(int file, unsigned char command, unsigned ch
     return 0;
 }
 
-static int i2c_smbus_read_word_data(int file, unsigned char command, unsigned char *ucData){
+static int i2c_smbus_read_word_data(int file, unsigned char command, unsigned char *ucData)
+{
 	union i2c_smbus_data data;
-
 	if(i2c_smbus_access(file, I2C_SMBUS_READ, command,
-			                 I2C_SMBUS_WORD_DATA, &data)){
-            printf("i2c_smbus_access error\n");
-            return -1;
-    }else{
-        *ucData = data.word;
-    }
-
-    return 0;
+				 I2C_SMBUS_WORD_DATA, &data)){
+		printf("i2c_smbus_access error\n");
+    		return -1;
+	}else{
+		*ucData = data.word;
+	}
+    	return 0;
 }
 
-static int i2c_smbus_read_block_data(int file,unsigned char command){
-
+static int i2c_smbus_read_block_data(int file,unsigned char command)
+{
 	union i2c_smbus_data data;
 	int i = 0;
 	data.block[0] = 16;
@@ -109,24 +98,22 @@ static int i2c_smbus_read_block_data(int file,unsigned char command){
         	printf("i2c_smbus_access error\n");
         	return -1;
 	}else{
-		
 		for(i = 0;i < 16;i++){
 			printf("[%d]: 0x%02X\n",i,data.block[1 + i]);
 		}
 	}
-	
 	return 0;
 }
 
 /*write relevant functions*/
-static int i2c_smbus_write_byte_data(int file,unsigned char command,unsigned char ucData){
-
+static int i2c_smbus_write_byte_data(int file,unsigned char command,unsigned char ucData)
+{
 	union i2c_smbus_data data;
 	data.byte = ucData;
 	
 	if(i2c_smbus_access(file,I2C_SMBUS_WRITE,command,
-                            I2C_SMBUS_BYTE_DATA,&data)){             
-        	printf("i2c_smbus_access error\n");
+                            	I2C_SMBUS_BYTE_DATA,&data)){             
+		printf("i2c_smbus_access error\n");
         	return -1;
 	}else{
 		printf("i2c_smbus_access success\n");
@@ -134,13 +121,13 @@ static int i2c_smbus_write_byte_data(int file,unsigned char command,unsigned cha
 	return 0;
 }
 
-static int i2c_smbus_write_word_data(int file, unsigned char command, unsigned char ucData){
-
+static int i2c_smbus_write_word_data(int file, unsigned char command, unsigned char ucData)
+{
 	union i2c_smbus_data data;
 	data.word = ucData;
 
-    if(i2c_smbus_access(file,I2C_SMBUS_WRITE,command,
-                            I2C_SMBUS_WORD_DATA,&data)){             
+	if(i2c_smbus_access(file,I2C_SMBUS_WRITE,command,
+				I2C_SMBUS_WORD_DATA,&data)){             
         	printf("i2c_smbus_access error\n");
         	return -1;
 	}else{
@@ -149,8 +136,8 @@ static int i2c_smbus_write_word_data(int file, unsigned char command, unsigned c
 	return 0;
 }
 
-static int i2c_smbus_write_block_data(int file,unsigned char command){
-
+static int i2c_smbus_write_block_data(int file,unsigned char command)
+{
 	union i2c_smbus_data data;
 	int i = 0;
 	data.block[0] = 16;
@@ -159,15 +146,13 @@ static int i2c_smbus_write_block_data(int file,unsigned char command){
 		data.block[1 + i] = 0x50 + i;
 	}
 	
-	
 	if(i2c_smbus_access(file,I2C_SMBUS_WRITE,command,
-                            I2C_SMBUS_I2C_BLOCK_DATA,&data)){             
+                            	I2C_SMBUS_I2C_BLOCK_DATA,&data)){             
         	printf("i2c_smbus_access error\n");
         	return -1;
 	}else{
 		printf("i2c_smbus_access success\n");
 	}
-	
 	return 0;
 }
 
@@ -202,45 +187,36 @@ int main(int argc, char *argv[]){
     func_select = atoi(argv[2]);
 
     switch(func_select){
-	
 		case 1:
 			i2c_smbus_read_byte_data(file,ucCmd,&ucTemp);
 			printf("DATA: 0x%02X\n",ucTemp);
-		break;
-           
+			break;
 		case 2:
-             i2c_smbus_read_word_data(file, ucCmd);
-		break;
-	
+             		i2c_smbus_read_word_data(file, ucCmd);
+			break;
 		case 3:
 			i2c_smbus_read_block_data(file,ucCmd);		
-		break;
-       
-        case 5:
-            ucTemp = strtol(argv[5],NULL,16);
+			break;
+        	case 5:
+		    	ucTemp = strtol(argv[5],NULL,16);
 			i2c_smbus_write_byte_data(file,ucCmd,ucTemp);
-		break;
+			break;
 		
 		case 6:
-            i2c_smbus_write_word_data(file, ucCmd, ucTemp);
-		break;
-	
+	            	i2c_smbus_write_word_data(file, ucCmd, ucTemp);
+			break;
 		case 7:
-		    i2c_smbus_write_block_data(file,ucCmd);
-		break;
-		
+		    	i2c_smbus_write_block_data(file,ucCmd);
+			break;
 		default:
 			helpMessage();
 			return -1;
-		break;
+			break;
 	}
-	
-
 	return 0;
 }
 
 static void helpMessage(void){
-
 	printf("\n=========================================Help==========================================\n");
 	printf(" ./a.out <i2c-dev> testcase DeviceAddr Cmd DATA                                          \n");
 	printf(" example: ./a.out /dev/i2c-2 1 0x50 0x03 : Read Device:0x50 cmd:0x03 1 Byte from i2c-2.  \n");
@@ -257,14 +233,23 @@ static void helpMessage(void){
 }
 
 void init(){
-    
-    //show software version
-    printf("[ I2C control test software version: %d.%d.%d.%d]\n", 
-           VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_BUILD);
+    	//show software version
+ 	printf("[ I2C control test software version: %d.%d.%d.%d]\n", 
+   	VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_BUILD);
 
-    //set I2C bus type. right now is only PCH, might add EC option for selected in future.
+    	//set I2C bus type. right now is only PCH, might add EC option for selected in future.
 	printf("******** <Bus Type ID> ********\n");
-    printf("This tool is for testing I2C Bus Type:PCH read/write.\n");
-    printf("*******************************\n");
+    	printf("This tool is for testing I2C Bus Type:PCH read/write.\n");
+    	printf("*******************************\n");
 }
 ```
+
+
+# Reference
+## Linux Kernel Documentation 
+- i2c dev-interface → https://www.kernel.org/doc/Documentation/i2c/dev-interface
+- slave-interface → https://docs.kernel.org/i2c/slave-interface.html
+
+## Linux 
+- Linux i2c-tools opensource code (i2cdetect / i2cset / i2cget .etc)
+- https://github.com/mozilla-b2g/i2c-tools
