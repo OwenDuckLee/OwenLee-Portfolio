@@ -12,7 +12,7 @@ nav_order: 3
 - enable pin PB7 as I2C SDA
 - enable pin PB6 as I2C SCL
 - find internal LED pin PC13 and select as GPIO_Output
-  ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/72b11d76-f0ce-4b40-9c2f-fabf70cdae0f/6e9bb6a4-0830-46dc-8f2b-c44cb0b8f911/image.png)
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/72b11d76-f0ce-4b40-9c2f-fabf70cdae0f/6e9bb6a4-0830-46dc-8f2b-c44cb0b8f911/image.png)
 
 # Program Features
 - Simulate ROM as data buffer for read/write
@@ -22,10 +22,12 @@ nav_order: 3
 - transmit data by I2C to control on/off FAN(TBD)
 
 # Program code
-- Need to follow master transmition speed (100KHz or 400KHz), then set speed in IDE to re-generate stm32 code
+- Need to follow master transmition speed (100KHz or 400KHz)
+- then set speed in IDE to re-generate stm32 code
 
 ## main.c
 - main.c file was generated after you completed setup in stm32Cube IDE
+
 ```c
 /* USER CODE BEGIN Header */
 /**
@@ -288,6 +290,7 @@ void assert_failed(uint8_t *file, uint32_t line)
 ```
 
 ## i2c-slave.h
+
 ```c
 /*
  * i2c_slave.h
@@ -323,6 +326,7 @@ bool is_i2cdump_tool_active(void);
 #endif /* INC_I2C_SLAVE_H_ */
 ```
 ## i2c-slave.c
+
 ```c
 /*
  * i2c_slave.c
