@@ -12,7 +12,6 @@ nav_order: 3
 - enable pin PB7 as I2C SDA
 - enable pin PB6 as I2C SCL
 - find internal LED pin PC13 and select as GPIO_Output
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/72b11d76-f0ce-4b40-9c2f-fabf70cdae0f/6e9bb6a4-0830-46dc-8f2b-c44cb0b8f911/image.png)
 
 # Program Features
 - Simulate ROM as data buffer for read/write
