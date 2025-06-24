@@ -70,26 +70,26 @@ void sendFileOverI2C() {
     }
 
     while (bytesSent < FILE_SIZE) {
-      //count of bytes for current need to write
-	    uint32_t bytesToSend = 32;
+      	//count of bytes for current need to write
+    	uint32_t bytesToSend = 32;
 
-      //use EAPI I2C write function write to slave
-      ret = EApiI2CWriteTransfer(
-              I2C_BUS_ID,
-              I2C_SLAVE_ADDR,
-	            COMMAND,
-              testFileBuffer + bytesSent,
-	            bytesToSend
-            );
+      	//use EAPI I2C write function write to slave
+	ret = EApiI2CWriteTransfer(
+	              	I2C_BUS_ID,
+	              	I2C_SLAVE_ADDR,
+		    	COMMAND,
+	              	testFileBuffer + bytesSent,
+		    	bytesToSend
+		);
 
-      if (!EAPI_TEST_SUCCESS(ret)) {
-        fprintf(stderr, "Error: I²C Write failed at byte %u\n", bytesSent);
-        printf("%s(%d): EApiI2CWriteTransfer error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
-        return;
-      }
+	if (!EAPI_TEST_SUCCESS(ret)) {
+	        fprintf(stderr, "Error: I²C Write failed at byte %u\n", bytesSent);
+	        printf("%s(%d): EApiI2CWriteTransfer error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
+	        return;
+      	}
 
-      printf("Transferred %u bytes to I²C Slave.\n", bytesToSend);
-      bytesSent += bytesToSend;
+	printf("Transferred %u bytes to I²C Slave.\n", bytesToSend);
+	bytesSent += bytesToSend;
     }
 
     if(clock_gettime(CLOCK_MONOTONIC, &end_time) == -1) {
@@ -99,7 +99,7 @@ void sendFileOverI2C() {
     }
 
     double elapsed_time = (end_time.tv_sec - start_time.tv_sec) +
-	    		                (end_time.tv_nsec - start_time.tv_nsec) / 1e9;
+			(end_time.tv_nsec - start_time.tv_nsec) / 1e9;
 
     printf("File transfer completed. Total bytes sent: %u\n", FILE_SIZE);
     printf("Elapsed time: %.6f seconds\n", elapsed_time);
@@ -165,22 +165,21 @@ uint8_t fullBuffer[BUFFER_SIZE];
 void initBuffer(uint8_t *buffer, size_t size) {
 	srand(time(NULL));
 	for(size_t i = 0; i < size; i++) {
-    buffer[i] = rand() % 256;
-  }
+		buffer[i] = rand() % 256;
+	}
 }
 
 int compareRxTxBuffer(const uint8_t *rxBuffer, const uint8_t *txBuffer, size_t size) {
 	for(size_t i = 0; i < size; i++){
 		if(rxBuffer[i] != txBuffer[i])
-			return 0;
+		return 0;
 	}
-
 	return 1;
 }
 
 
 int performTestCycle() {
-  EApiStatus_t ret;
+	EApiStatus_t ret;
 	uint32_t bufferSize = TXRX_CHUNK_SIZE; 
 	uint8_t * txBuffer = (uint8_t *)malloc((size_t)bufferSize * sizeof(uint8_t)); 
 	uint8_t * rxBuffer = (uint8_t *)malloc((size_t)bufferSize * sizeof(uint8_t));
@@ -191,37 +190,37 @@ int performTestCycle() {
 
 		//write txBuffer data to i2c slave
 		ret = EApiI2CWriteTransfer(
-            		I2C_BUS_ID,
-            		I2C_SLAVE_ADDR, 
-			          COMMAND,
-            		txBuffer,
-            		TXRX_CHUNK_SIZE	
+			I2C_BUS_ID,
+			I2C_SLAVE_ADDR, 
+			COMMAND,
+			txBuffer,
+			TXRX_CHUNK_SIZE	
         	);
-    if (!EAPI_TEST_SUCCESS(ret)) {
-          fprintf(stderr, "Error: I2C Write failed at offset %zu\n", offset);
-          printf("%s(%d): EApiI2CWriteTransfer error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
-          return -1;
-    }
+		if (!EAPI_TEST_SUCCESS(ret)) {
+			fprintf(stderr, "Error: I2C Write failed at offset %zu\n", offset);
+			printf("%s(%d): EApiI2CWriteTransfer error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
+			return -1;
+		}
 
 		//read i2c slave data to rxBuffer
 		ret = EApiI2CReadTransfer(
-                I2C_BUS_ID,
-                I2C_SLAVE_ADDR,
-                COMMAND,
-                rxBuffer,
-            		TXRX_CHUNK_SIZE,
-            		TXRX_CHUNK_SIZE	
-          );
-    if (!EAPI_TEST_SUCCESS(ret)) {
-          fprintf(stderr, "Error: I2C Read failed at offset %zu\n", offset);
-          printf("%s(%d): EApiI2CReadTransfer error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
-          return -1;
-    }
+			I2C_BUS_ID,
+			I2C_SLAVE_ADDR,
+			COMMAND,
+			rxBuffer,
+			TXRX_CHUNK_SIZE,
+			TXRX_CHUNK_SIZE	
+		);
+		if (!EAPI_TEST_SUCCESS(ret)) {
+			fprintf(stderr, "Error: I2C Read failed at offset %zu\n", offset);
+			printf("%s(%d): EApiI2CReadTransfer error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
+			return -1;
+		}
 
 		//compare rxBuffer and txBuffer
 		if(!compareRxTxBuffer(rxBuffer, txBuffer, TXRX_CHUNK_SIZE)) {
-        printf("Buffer mismatch at offset %zu\n", offset);
-			  return -1;
+        		printf("Buffer mismatch at offset %zu\n", offset);
+			return -1;
 		}
 
 		printf("Chunk at offset %zu passed validation.\n", offset);
@@ -233,19 +232,19 @@ int performTestCycle() {
 }
 
 int main() {
-  EApiStatus_t ret;
-  //EAPI initialize
-  if ((ret = EApiLibInitialize()) != EAPI_STATUS_SUCCESS)
-  {
-      printf("%s(%d): EApiLibInitialize error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
-      return -1;
-  }
+	EApiStatus_t ret;
+	//EAPI initialize
+	if ((ret = EApiLibInitialize()) != EAPI_STATUS_SUCCESS)
+	{
+		printf("%s(%d): EApiLibInitialize error ... (error code 0x%X)\n", __FUNCTION__, __LINE__, ret);
+		return -1;
+	}
 
 	//perform verifying test for cycle count
 	for(int cycle = 1; cycle <= CYCLE_COUNT; cycle++) {
 		//init fullBuffer
 		initBuffer(fullBuffer, BUFFER_SIZE);
-
+		
 		printf("Starting Cycle %d\n", cycle);	
 		if(performTestCycle() != 0) {
 			printf("Cycle %d failed.\n", cycle);
