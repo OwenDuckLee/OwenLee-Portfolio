@@ -34,11 +34,11 @@ nav_order: 3
 
 
 ## Measure HW signal when driver read abnormal value
-  Measure HW ADC signal(12V, 5V, 3.3V) by Oscilloscope, 
+  - Measure HW ADC signal(12V, 5V, 3.3V) by Oscilloscope 
   -	monitor each voltage signal if is wrong while voltage values(output from SIO driver) is out of range?
-  >> if ADC signal all correct while switching between D0 – D3, we should dedicated investigate on driver level firstly.
-  >> if ADC signal occurs abnormal, then we should direction to investigate on HW/BIOS firstly.
-  ![image](https://github.com/user-attachments/assets/4c5cf763-82f1-4194-b823-39d31414eb9d)
+  --> if ADC signal all correct while switching between D0 – D3, we should dedicated investigate on driver level firstly.
+  --> if ADC signal occurs abnormal, then we should direction to investigate on HW/BIOS firstly.
+    ![image](https://github.com/user-attachments/assets/4c5cf763-82f1-4194-b823-39d31414eb9d)
 
 
 # Solution
