@@ -19,7 +19,7 @@ nav_order: 2
   4. External GPU (PEG_TX0_P/N - PEG_TX3_P/N, 4 lanes)
  
 
-  #Issue Verifying
+  # Issue Verifying
 
   ## Use Linux cmd to verifying system
   - check grub cmdline
