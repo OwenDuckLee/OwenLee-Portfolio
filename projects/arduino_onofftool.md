@@ -25,11 +25,24 @@ nav_order: 4
 - 可隨時 替換 or 擴充 各部位組件
 
 ## Tool Photos
+- Tool Frontside
 ![OnOffTool_45degreefrontside](https://github.com/user-attachments/assets/be7ee6bd-e540-4364-94c7-764f773c20ea)
 
+- Tool Open case 
+![OnOffToolopencase](https://github.com/user-attachments/assets/aeede8fc-1feb-4881-aa67-04768b8b6f0a)
 
+- Tool Internal view
+![OnOffTool_Internal](https://github.com/user-attachments/assets/be2cdd5a-a523-400f-8e1d-dc2058a31320)
 
+  
 ## How it works
+- setup tool box and connect to testing-target M/B
+![envsetup](https://github.com/user-attachments/assets/3adfb6c8-637b-4924-afab-2d149cf6f1dd)
+
+- connect comport with App, setting testing parameters, and start testing cycles
+![starttesting](https://github.com/user-attachments/assets/4119b1f9-b100-4ccb-adc2-b197fa159399)
+
+
 
 # HW document
 ## Components
