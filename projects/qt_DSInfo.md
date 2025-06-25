@@ -7,7 +7,7 @@ nav_order: 5
 
 # Project Description
 - Devices and System Information tools on Linux
-- User can search below inforamtion with GUI app
+- User can search below information with GUI app
   - OS version
   - CPU
   - GPU
