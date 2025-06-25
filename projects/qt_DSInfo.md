@@ -14,7 +14,8 @@ nav_order: 5
   - Memory RAM Usage
   - Storage Usage
   - Peripherals info
-![DSInfo](https://github.com/user-attachments/assets/208e8665-19e2-43ff-8c97-ba281e5729b7)
+  
+  ![DSInfo](https://github.com/user-attachments/assets/208e8665-19e2-43ff-8c97-ba281e5729b7)
 
 # SW document
 ## QT code
