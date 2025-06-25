@@ -1,0 +1,41 @@
+---
+title: Arduino - OnOffStress Test Tool
+parent: Projects Achievement
+layout: default
+nav_order: 4
+---
+
+# Project Description
+## Sovle what problems
+- reduce RD testing time
+- 循環測試，抓裝置遺失次數
+- 可視化的選項介面
+- 模式選單
+- control AC power on/off
+
+## Tool Featrues
+- 優化測試效率 提升 測試精準 度
+- 面對各 種 issue 避免 缺乏 測試工具
+- 低成本 高維護性 高擴展性
+- 無人自動 化 測試 / 自動錯誤紀錄
+- 客製化 / 模組化 軟體程式
+- 模組化 / 擴充式 治具
+- 一鍵搞 定 999 次 / 即時精準 log
+- 可依據不同情境 設定環境 參數
+- 可隨時 替換 or 擴充 各部位組件
+
+## How it works
+
+# HW document
+## Components
+![image](https://github.com/user-attachments/assets/033f863f-015e-4307-86eb-2081643b503e)
+
+## Block diagram
+![image](https://github.com/user-attachments/assets/9b692f67-109f-489e-8580-e9eb8ab6cdf7)
+
+## Schematic
+![image](https://github.com/user-attachments/assets/f3d1f3aa-b4e2-4d6a-8a1a-e562011364c4)
+
+# SW document
+## MCU code
+   - refer to github repository: 
