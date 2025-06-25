@@ -7,22 +7,18 @@ nav_order: 4
 
 # Project Description
 ## Sovle what problems
-- reduce RD testing time
-- 循環測試，抓裝置遺失次數
-- 可視化的選項介面
-- 模式選單
-- control AC power on/off
+- reduce RD testing time, optimize RD resource
+- original testing method will need RD sit next to the M/B for hours
+- it will be perfect if there is a automatic machine to improve this problem
 
-## Tool Featrues
-- 優化測試效率 提升 測試精準 度
-- 面對各 種 issue 避免 缺乏 測試工具
-- 低成本 高維護性 高擴展性
-- 無人自動 化 測試 / 自動錯誤紀錄
-- 客製化 / 模組化 軟體程式
-- 模組化 / 擴充式 治具
-- 一鍵搞 定 999 次 / 即時精準 log
-- 可依據不同情境 設定環境 參數
-- 可隨時 替換 or 擴充 各部位組件
+## OnOffStress Box Featrues
+- control AC/DC power automatically
+- control ACPI power state: S0, S5, G3, powerbutton-trigger 
+- integrated with GUI App for user input testing parameters
+- high stability for testing 9999 cycles
+- modulize componets for maitain easily
+- high scalability for add new features
+- low cost under NTD 1000
 
 ## Tool Photos
 - Tool Frontside
@@ -34,14 +30,12 @@ nav_order: 4
 - Tool Internal view
 ![OnOffTool_Internal](https://github.com/user-attachments/assets/be2cdd5a-a523-400f-8e1d-dc2058a31320)
 
-  
 ## How it works
-- setup tool box and connect to testing-target M/B
+- Connect OnOffStress box and target M/B, then power-on both of them
 ![envsetup](https://github.com/user-attachments/assets/3adfb6c8-637b-4924-afab-2d149cf6f1dd)
 
-- connect comport with App, setting testing parameters, and start testing cycles
+- Open Testing App and set testing parameters, then start testing cycles
 ![starttesting](https://github.com/user-attachments/assets/4119b1f9-b100-4ccb-adc2-b197fa159399)
-
 
 
 # HW document
@@ -56,4 +50,5 @@ nav_order: 4
 
 # SW document
 ## MCU code
-   - refer to github repository: 
+   - Please refer to github repository for more detailed code
+     Link: 
