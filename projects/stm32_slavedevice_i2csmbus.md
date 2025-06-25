@@ -1,12 +1,12 @@
 ---
-title: STM32 Slave device(simulate ROM) - I2C/SMBus transmition
+title: STM32 Slave device(simulate ROM) - I2C/SMBus transmission
 parent: Projects Achievement
 layout: default
 nav_order: 3
 ---
 
 # Description
-- use dev board STM32F103C8T6 to simulate ROM for I2C/SMBus transmition
+- use dev board STM32F103C8T6 to simulate ROM for I2C/SMBus transmission
 
 # STM32 HW setup
 - enable pin PB7 as I2C SDA
