@@ -50,5 +50,5 @@ nav_order: 4
 
 # SW document
 ## MCU code
-   - Please refer to github repository for more detailed code
-     Link: 
+- Please refer to github repository for more detailed code: [Arduino_OnOffStress-Test-Tool](https://github.com/OwenDuckLee/Arduino_OnOffStress-Test-Tool.git)
+     
