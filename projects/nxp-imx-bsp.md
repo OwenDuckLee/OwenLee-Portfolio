@@ -61,14 +61,119 @@ nav_order: 6
 8. Flash Image into SD card
     
 # Porting Custom-Board DTS U-Boot
+- take m8m051 as example
+- Follow instructions of NXP UG10165 Porting guide
 ## Porting Kernel Steps
-> Follow instructions of NXP UG10165 Porting guide
 > !! Never modify .dtsi file !!
-
-1. choose to build and load kernel in Yocto Project
-2. go to build directory
+1. Choose to build and load kernel in Yocto Project
+2. Go to build directory
     ```bash
     $ cd ~/yocto-imx/bld-wayland
+    ```
+3. Firstly, build a reference board kernel for associated SoC(e.g imx8mqevk)
+    ```bash
+    $ MACHINE=imx8mqevk bitbake linux-imx
+    ```
+4. Create custom layer for holding custom board kernel changes
+    ```bash
+    $ bitbake-layers create-layer m8m051
+    $ bitbake-layers add-layer ~/yocto-imx8/sources/m8m051/
+    $ bitbake-layers show-layers
+    
+    # remove layer can call below command
+    # $ rm -rf ~/yocto-imx8/sources/m8m051/
+    ```
+5. Copy reference imx8mqevk.conf to custom_board layer
+    ```bash
+    $ mkdir -p ~/yocto-imx8/sources/m8m051/conf/machine
+    $ cp ~/yocto-imx8/sources/meta-fsl-bsp-release/imx/meta-bsp/conf/machine/imx8mqevk.conf\
+          ~/yocto-imx8/sources/m8m051/conf/machine/imx-m8m051.conf
+    ```
+6. Edit the machine configuration file with device trees listed in the KERNEL_DEVICETREE
+    ```bash
+    $ sudo vi ~/yocto-imx8/sources/m8m051/conf/machine/imx-m8m051.conf
+    ```
+    ```bash
+    # modify this line for changing to use customized dtb #
+    #KERNEL_DEVICETREE = "freescale/fsl-imx8mq-evk.dtb freescale/fsl-imx8mq-evk-ak4497.dtb "
+    KERNEL_DEVICETREE = "freescale/fsl-imx8mq-m8m051.dtb freescale/fsl-imx8mq-evk-ak4497.dtb "
+    
+    # modify this line to set u-boot DTB name after bitbake linux-imx #
+    #UBOOT_DTB_NAME = "fsl-imx8mq-evk.dtb"
+    UBOOT_DTB_NAME = "fsl-imx8mq-m8m051.dtb"
+    ```
+7. Change the preferred version for kernel to build with linux-imx
+    ```bash
+    $ cd ~/yocto-imx8/bld-wayland/conf
+    $ sudo vi local.conf
+    ```
+    ```bash
+    #add this line to conf/local.conf
+    #this forces the linux-imx version to be used
+    ## PREFERRED_PROVIDER_virtual/kernel_<custom_name> = "linux-imx"
+    PREFERRED_PROVIDER_virtual/kernel_imx-m8m051 = "linux-imx"
+    PREFERRED_PROVIDER_virtual/bootloader_imx-m8m051 = "u-boot-imx"
+    ```
+8. Build custom machine first time for having work directory
+    
+    ```bash
+    $ cd ~/yocto-imx8
+    $ MACHINE=imx-m8m051 bitbake linux-imx
+    ```
+9. Copy reference .dts file for custom layer
+    ```bash
+    $ cd ~/yocto-imx8/bld-wayland/tmp/work-shared/imx-m8m051/kernel-source/arch/arm64/boot/dts/freescale
+    $ cp fsl-imx8mq-evk.dts fsl-imx8mq-m8m051.dts
+    ```
+10. Modify .dts device tree for custom board
+    
+    > go to kernel Documentation/devicetree/bingings for further information
+    $cd ~/yocto-imx8/bld-wayland/tmp/work-shared/imx-m8m051/kernel-source/Documentation/devicetree/bindings/fsl-board.txt
+    > 
+    
+    ```bash
+    $ sudo vi fsl-imx8mq-m8m051.dts
+    ```
+    
+    ```c
+    //modify the hardware configurations for custom board
+    //for this example, we adjust the memory for LPDDR 4GB capacity
+    
+    /dts-v1/;
+    #include "fsl-imx8mq.dtsi"
+    
+    / {
+    		model = "Freescale i.MX8MQ EVK";
+    		compatible = "fsl, imx8mq-evk", "fsl, imx8mq";
+    		
+    		/*add memory node configuration for overlapping .dtsi*/
+    		memory@40000000 {
+    				device_type = "memory";
+    				reg = <0x0 0x40000000 0x1 0x0>;
+    		};
+    		
+    		/*another original nodes in code*/
+    		
+    		/* ... */
+    
+    ```
+11. Build the custom machine
+    ```bash
+    $ cd ~/yocto-imx8
+    $ MACHINE=imx-m8m051 bitbake linux-imx
+    ```
+12. Check build kernel and device tree
+    ```bash
+    $ ls ~/yocto-imx/bld-wayland/tmp/work/imx_m8m051-poky-linux/linux-imx/4.14.08-r0
+    #can find the build output
+    
+    $ ls ~/yocto-imx/bld-wayland/tmp/deploy/images/imx-m8m051
+    #then can find fsl-imx8mq-m8m051.dtb and build kernel image for flashing
+    ```
+13. Check the yocto project patch and .bbappend
+    > create .bbappedn / .patch / custom_defconfig
+    ```bash
+    $ cd ~/yocto-imx/sources/m8m051/recipes-kernel/linux-imx/files
     ```
 
 ## Porting U-Boot Steps
