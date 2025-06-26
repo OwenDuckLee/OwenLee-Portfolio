@@ -182,5 +182,44 @@ nav_order: 6
     ```bash
     $ cd ~/yocto-imx/sources/m8m051/recipes-kernel/linux-imx/files
     ```
-
+    
 ## Porting U-Boot Steps
+1. Follow UG10165 porting U-Boot section
+2. Utilize porting kernel built m8m051 layer
+3. Build custom machine first time for having work directory
+   ```bash
+   $ cd ~/yocto-imx8
+   $ MACHINE=imx-m8m051 bitbake linux-imx
+   ```
+4. Modify U-Boot .dtsi and .dts file for porting
+   ```bash
+    # go to temp work folder
+    # modify fsl-imx8mq-m8m051.dts for memory uart…etc
+   
+    $ cd ~/yocto-imx8/bld-wayland/tmp/work/imx_m8m051-poky-linux/u-boot-imx/2018.03-r0/git/arch/arm/dts
+    $ cp fsl-imx8mq-evk.dts fsl-imx8mq-m8m051.dts
+   ```
+5. Go to below folder modify Makefile
+    ```bash
+    $ cd ~/yocto-imx8/bld-wayland/tmp/work/imx_m8m051-poky-linux/u-boot-imx/2018.03-r0/build/imx8mq_evk_config/source/arch/arm/dts/
+    $ sudo vi Makefile
+    # add fsl-imx8mq-m8m051.dtb
+    ```
+6. Compile U-Boot in Yocto project by bitbake
+7. Build .bbappend file and .patch file for Yocto project
+    ```bash
+    $ mkdir -p ~/yocto-imx8/sources/m8m051/recipes-bsp/uboot-imx/files
+    $ sudo vi patch1.patch
+    ```
+
+    ```bash
+    $ cd ..
+    $ sudo vi u-boot-imx_%.bbappend
+    ```
+    
+    ```c
+    //add below content
+    //noted sumo will be different with latest UG command
+    FILESEXTRAPATH_prepend := "${THISDIR}/files:"
+    SRC_URI += "file://patch1.patch"
+    ```
