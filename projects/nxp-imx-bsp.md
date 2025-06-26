@@ -7,7 +7,7 @@ nav_order: 6
 
 # Project Description
 ## Project Goals
-- learn how to port new devices for SoC
+- Learn how to port new devices for SoC
 - Modify U-Boot and Device Tree Source(DTS)
 - Customized device drivers
 
@@ -61,10 +61,14 @@ nav_order: 6
 8. Flash Image into SD card
     
 # Porting Custom-Board DTS U-Boot
-- take m8m051 as example
+- Take m8m051 as example
 - Follow instructions of NXP UG10165 Porting guide
+  
 ## Porting Kernel Steps
+
 > !! Never modify .dtsi file !!
+>
+
 1. Choose to build and load kernel in Yocto Project
 2. Go to build directory
     ```bash
@@ -107,6 +111,7 @@ nav_order: 6
     $ cd ~/yocto-imx8/bld-wayland/conf
     $ sudo vi local.conf
     ```
+    
     ```bash
     #add this line to conf/local.conf
     #this forces the linux-imx version to be used
@@ -157,12 +162,12 @@ nav_order: 6
     		/* ... */
     
     ```
-11. Build the custom machine
+12. Build the custom machine
     ```bash
     $ cd ~/yocto-imx8
     $ MACHINE=imx-m8m051 bitbake linux-imx
     ```
-12. Check build kernel and device tree
+13. Check build kernel and device tree
     ```bash
     $ ls ~/yocto-imx/bld-wayland/tmp/work/imx_m8m051-poky-linux/linux-imx/4.14.08-r0
     #can find the build output
@@ -170,8 +175,10 @@ nav_order: 6
     $ ls ~/yocto-imx/bld-wayland/tmp/deploy/images/imx-m8m051
     #then can find fsl-imx8mq-m8m051.dtb and build kernel image for flashing
     ```
-13. Check the yocto project patch and .bbappend
+14. Check the yocto project patch and .bbappend
     > create .bbappedn / .patch / custom_defconfig
+    >
+    
     ```bash
     $ cd ~/yocto-imx/sources/m8m051/recipes-kernel/linux-imx/files
     ```
