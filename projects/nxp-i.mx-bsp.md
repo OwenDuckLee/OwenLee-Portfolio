@@ -1,4 +1,3 @@
-
 ---
 title: NXP SoC BSP - Bring-up Image
 parent: Projects Achievement
